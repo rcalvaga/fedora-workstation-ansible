@@ -1,0 +1,6 @@
+---
+- name: Configure Fedora Workstation and Install Software
+  hosts: all
+
+  roles:
+    - common
