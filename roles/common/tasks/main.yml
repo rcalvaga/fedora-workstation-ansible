@@ -1,0 +1,11 @@
+# This playbook contains common plays that will be run on all nodes.
+- name: Install common dependencies
+  yum: name={{ item }} state=installed
+  with_items:
+   - libselinux-python
+   - libsemanage-python
+   - firewalld
+
+- name: Firewalld service state
+  service: name=firewalld state=started enabled=yes
+
