@@ -1,0 +1,8 @@
+---
+- name: Install Generic Software
+  dnf: 
+    name: "{{ item }}"
+    state: latest
+  with_items:
+   - rhythmbox
+   - shotwell

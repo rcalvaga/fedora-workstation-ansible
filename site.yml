@@ -4,3 +4,4 @@
 
   roles:
     - common
+    - generic_software
