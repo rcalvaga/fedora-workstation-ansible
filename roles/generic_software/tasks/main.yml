@@ -15,6 +15,7 @@
 
 - name: install JRE
   command: rpm -ivh /tmp/jre-{{ jre_version }}-linux-x64.rpm
+  ignore_errors: yes
   args:
      warn: false
 
