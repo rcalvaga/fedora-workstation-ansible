@@ -4,21 +4,6 @@
     name: ['rhythmbox', 'shotwell']
     state: latest
 
-- name: download JRE
-  get_url: 
-    url: http://{{ repo_host }}/files/jre-{{ jre_version }}-linux-x64.rpm
-    dest: /tmp/jre-{{ jre_version }}-linux-x64.rpm
-  register: result
-  until: result is success
-  retries: 5
-  delay: 10
-
-- name: install JRE
-  command: rpm -ivh /tmp/jre-{{ jre_version }}-linux-x64.rpm
-  ignore_errors: yes
-  args:
-     warn: false
-
 - name: download Chrome
   get_url: 
     url: http://{{ repo_host }}/files/google-chrome-stable_current_x86_64.rpm

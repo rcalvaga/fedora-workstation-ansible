@@ -1,0 +1,55 @@
+---
+- name: download JRE
+  get_url: 
+    url: http://{{ repo_host }}/files/jre-{{ jre_version }}-linux-x64.rpm
+    dest: /tmp/jre-{{ jre_version }}-linux-x64.rpm
+  register: result
+  until: result is success
+  retries: 5
+  delay: 10
+
+- name: install JRE
+  command: rpm -ivh /tmp/jre-{{ jre_version }}-linux-x64.rpm
+  ignore_errors: yes
+  args:
+     warn: false
+
+- name: create directory SAP
+  file:
+    path: /tmp/sap
+    state: directory
+    mode: '0755'
+
+- name: download SAP installer
+  get_url: 
+    url: http://{{ repo_host }}/files/SAPClients.tar.gz
+    dest: /tmp/sap/SAPClients.tar.gz
+  register: result
+  until: result is success
+  retries: 5
+  delay: 10
+
+- name: download PlatinGUI JAR
+  get_url: 
+    url: http://{{ repo_host }}/files/PlatinGUI750_PL1_for_Linux.JAR
+    dest: /tmp/sap/PlatinGUI750_PL1_for_Linux.JAR
+  register: result
+  until: result is success
+  retries: 5
+  delay: 10
+
+- name: install PlatinGUI
+  shell: "java -jar PlatinGUI750_PL1_for_Linux.JAR --nogui"
+  args:
+      chdir: /tmp/sap
+
+- name: Decomprimir
+  unarchive:
+    src: /tmp/sap/SAPClients.tar.gz
+    dest: /opt/
+    remote_src: yes
+
+- name: remove SAP installers
+  file:
+    path: "/tmp/sap"
+    state: absent
