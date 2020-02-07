@@ -1,0 +1,8 @@
+---
+- name: install the 'KDE Plasma Workspaces' package group
+  dnf:
+    name: '@KDE Plasma Workspaces'
+    state: present
+
+- name: Starting KDE ar login
+  command: echo "exec /usr/bin/startkde" >> ~/.xinitrc 
