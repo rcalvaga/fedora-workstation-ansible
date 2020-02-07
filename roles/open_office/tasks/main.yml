@@ -1,6 +1,5 @@
 ---
   - name: create directory pemex
-    become: true
     file:
       path: /tmp/pemex
       state: directory
@@ -32,6 +31,7 @@
       state: present
 
   - name: remove office RPM packages
-    shell: rm -r /tmp/pemex/es
-  - name: remove tar
-    shell: rm /tmp/pemex/Apache_OpenOffice.tar.gz
+    file: 
+      path: /tmp/pemex/
+      state: absent
+ 
