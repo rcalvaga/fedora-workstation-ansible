@@ -23,7 +23,7 @@
  
   - name: install ooffice
     dnf:
-      name: /tmp/ooffice/es/RPMS/*.rpm
+      name: "/tmp/ooffice/es/RPMS/*.rpm"
       state: present
 
   - name: install ooffice desktop integration
