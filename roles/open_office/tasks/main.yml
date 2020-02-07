@@ -17,7 +17,7 @@
 
   - name: unarchive office
     unarchive: 
-      source: /tmp/pemex/Apache_OpenOffice.tar.gz
+      src: /tmp/pemex/Apache_OpenOffice.tar.gz
       dest: /tmp/pemex
     
  
