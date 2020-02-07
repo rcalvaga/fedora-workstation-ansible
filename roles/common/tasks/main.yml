@@ -4,8 +4,6 @@
     name: "{{ item }}" 
     state: installed
   with_items:
-   - libselinux-python
-   - libsemanage-python
    - firewalld
 
 - name: Firewalld service state
