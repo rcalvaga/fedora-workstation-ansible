@@ -1,10 +1,8 @@
 # This playbook contains common plays that will be run on all nodes.
 - name: Install common dependencies
-  yum: 
-    name: "{{ item }}" 
+  dnf: 
+    name: ['firewalld'] 
     state: installed
-  with_items:
-   - firewalld
 
 - name: Firewalld service state
   service: 

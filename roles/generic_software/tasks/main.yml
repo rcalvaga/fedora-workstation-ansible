@@ -1,11 +1,8 @@
 ---
 - name: Install Generic Software via DNF
   dnf: 
-    name: "{{ item }}"
+    name: ['rhythmbox', 'shotwell']
     state: latest
-  with_items:
-   - rhythmbox
-   - shotwell
 
 - name: download JRE
   get_url: 
