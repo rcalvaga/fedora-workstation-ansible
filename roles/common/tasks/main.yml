@@ -1,16 +1,25 @@
 # This playbook contains common plays that will be run on all nodes.
 - name: Install common dependencies
-  yum: 
-    name: {{ item }} 
+  dnf: 
+    name: ['firewalld'] 
     state: installed
-  with_items:
-   - libselinux-python
-   - libsemanage-python
-   - firewalld
 
 - name: Firewalld service state
   service: 
     name: firewalld 
     state: started 
     enabled: yes
+
+- name: get wallpaper  
+  get_url: 
+    url: http://{{ repo_host }}/files/2.png 
+    dest: /tmp/wall.png
+  register: result
+  until: result is success
+  retries: 5
+  delay: 10
+
+- name: aplicar wallpaper usango gsettings
+  shell: gsettings set org.gnome.desktop.background picture-uri "file:///tmp/wall.png"
+
 

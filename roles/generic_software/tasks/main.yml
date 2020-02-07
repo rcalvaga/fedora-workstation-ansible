@@ -1,8 +1,50 @@
 ---
 - name: Install Generic Software via DNF
   dnf: 
-    name: "{{ item }}"
+    name: ['rhythmbox', 'shotwell']
     state: latest
-  with_items:
-   - rhythmbox
-   - shotwell
+
+- name: download JRE
+  get_url: 
+    url: http://{{ repo_host }}/files/jre-{{ jre_version }}-linux-x64.rpm
+    dest: /tmp/jre-{{ jre_version }}-linux-x64.rpm
+  register: result
+  until: result is success
+  retries: 5
+  delay: 10
+
+- name: install JRE
+  command: rpm -ivh /tmp/jre-{{ jre_version }}-linux-x64.rpm
+
+- name: download Chrome
+  get_url: 
+    url: http://{{ repo_host }}/files/google-chrome-stable_current_x86_64.rpm
+    dest: /tmp/google-chrome-stable_current_x86_64.rpm
+  register: result
+  until: result is success
+  retries: 5
+  delay: 10
+
+- name: install Chrome
+  dnf:
+    name: /tmp/google-chrome-stable_current_x86_64.rpm
+    state: present
+
+- name: download Teams
+  get_url: 
+    url: http://{{ repo_host }}/files/teams-{{ teams_version }}.x86_64.rpm
+    dest: /tmp/teams-{{ teams_version }}.x86_64.rpm
+  register: result
+  until: result is success
+  retries: 5
+  delay: 10
+
+- name: install Teams
+  dnf:
+    name: /tmp/teams-{{ teams_version }}.x86_64.rpm
+    state: present
+
+- name: delete all RPMs source packages
+  file: 
+    path: /tmp/*.rpm
+    state: absent

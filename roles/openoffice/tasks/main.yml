@@ -30,7 +30,7 @@
       name: /tmp/ooffice/es/RPMS/desktop-integration/openoffice{{ openoffice_version }}-redhat-menus-{{ openoffice_version }}-9800.noarch.rpm
       state: present
 
-  - name: remove ooffice RPM packages
+  - name: remove ooffice RPM source packages
     file: 
       path: /tmp/ooffice/
       state: absent
