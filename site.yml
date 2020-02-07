@@ -5,4 +5,5 @@
   roles:
     - common
     - generic_software
+    - kde_install
    # - openoffice
