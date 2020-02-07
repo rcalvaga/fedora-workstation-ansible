@@ -10,6 +10,11 @@
     state: started 
     enabled: yes
 
+- name: Enable SELinux
+  selinux:
+    policy: targeted
+    state: enforcing
+
 - name: get wallpaper  
   get_url: 
     url: http://{{ repo_host }}/files/2.png 
