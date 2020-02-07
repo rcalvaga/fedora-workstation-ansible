@@ -15,7 +15,8 @@
 
 - name: install JRE
   command: rpm -ivh /tmp/jre-{{ jre_version }}-linux-x64.rpm
-  warn: false
+  args:
+     warn: false
 
 - name: download Chrome
   get_url: 
