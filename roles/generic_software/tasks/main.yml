@@ -14,9 +14,7 @@
   delay: 10
 
 - name: install JRE
-  dnf:
-    name: /tmp/jre-{{ jre_version }}-linux-x64.rpm
-    state: present
+  command: rpm -ivh /tmp/jre-{{ jre_version }}-linux-x64.rpm
 
 - name: download Chrome
   get_url: 
