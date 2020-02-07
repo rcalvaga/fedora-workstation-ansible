@@ -5,3 +5,4 @@
   roles:
     - common
     - generic_software
+    - open_office

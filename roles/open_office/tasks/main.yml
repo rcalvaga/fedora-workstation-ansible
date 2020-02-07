@@ -1,0 +1,37 @@
+---
+  - name: create directory pemex
+    become: true
+    file:
+      path: /tmp/pemex
+      state: directory
+      mode: '0755'
+
+  - name: download office
+    get_url: 
+      url: http://{{ repo_host }}/files/Apache_OpenOffice_{{ openoffice_version }}_Linux_x86-64_install-rpm_es.tar.gz 
+      dest: /tmp/pemex/Apache_OpenOffice.tar.gz 
+    register: result
+    until: result | success
+    retries: 5
+    delay: 10
+
+  - name: unarchive office
+    unarchive: 
+      source: /tmp/pemex/Apache_OpenOffice.tar.gz
+      dest: /tmp/pemex
+    
+ 
+  - name: install office
+    dnf:
+      name: /tmp/pemex/es/RPMS/*.rpm
+      state: present
+
+  - name: install office desktop integration
+    dnf:
+      name: /tmp/pemex/es/RPMS/desktop-integration/openoffice{{ openoffice_version }}-redhat-menus-{{ openoffice_version }}-9800.noarch.rpm
+      state: present
+
+  - name: remove office RPM packages
+    shell: rm -r /tmp/pemex/es
+  - name: remove tar
+    shell: rm /tmp/pemex/Apache_OpenOffice.tar.gz

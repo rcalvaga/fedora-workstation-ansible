@@ -1,3 +1,4 @@
 #Here are variables related to Fedora Workstations
 
-repo:
+repo_host:
+openoffice_version: 4.1.7

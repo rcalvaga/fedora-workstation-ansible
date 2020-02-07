@@ -1,5 +1,5 @@
 ---
-- name: Install Generic Software
+- name: Install Generic Software via DNF
   dnf: 
     name: "{{ item }}"
     state: latest
