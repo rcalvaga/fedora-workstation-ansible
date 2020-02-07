@@ -22,12 +22,18 @@
     
  
   - name: install ooffice
-    command: rpm -ivh /tmp/ooffice/es/RPMS/*.rpm
+    command: rpm -ivh *.rpm
+    ignore_errors: yes
+    args:
+      chdir: /tmp/ooffice/es/RPMS/
+      warn: false
 
   - name: install ooffice desktop integration
-    dnf:
-      name: /tmp/ooffice/es/RPMS/desktop-integration/openoffice{{ openoffice_version }}-redhat-menus-{{ openoffice_version }}-9800.noarch.rpm
-      state: present
+    command: rpm -ivh openoffice{{ openoffice_version }}-redhat-menus-{{ openoffice_version }}-9800.noarch.rpm
+    ignore_errors: yes
+    args:
+      chdir: /tmp/ooffice/es/RPMS/desktop-integration
+      warn: false
 
   - name: remove ooffice RPM source packages
     file: 
