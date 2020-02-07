@@ -43,7 +43,7 @@
   args:
       chdir: /tmp/sap
 
-- name: Decomprimir
+- name: Unzip SAP client
   unarchive:
     src: /tmp/sap/SAPClients.tar.gz
     dest: /opt/
