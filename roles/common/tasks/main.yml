@@ -15,7 +15,7 @@
     url: http://{{ repo_host }}/files/2.png 
     dest: /tmp/wall.png
   register: result
-  until: result | success
+  until: result is success
   retries: 5
   delay: 10
 
