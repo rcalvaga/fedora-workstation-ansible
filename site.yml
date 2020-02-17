@@ -6,6 +6,6 @@
     - common
     - generic_software
     - kde_install
-   # - wallpaper
+    - wallpaper
     - sap_client
    # - openoffice
