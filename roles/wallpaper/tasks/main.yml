@@ -1,11 +1,14 @@
+---
 # This playbook changes wallpaper in KDE
 - name: Descargar wallpaper
-  get_url:
+  get_url: 
     url: http://{{ repo_host }}/files/2.png
     dest: /tmp/wall.png
+
 - name: Configurando Display 
   environment:
     DISPLAY: ':0'
+
 - name: Cambiar Wallpaper
-  shell: qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'var allDesktops = desktops();print (allDesktops);for (i=0;i<allDesktops.length;i++) {d = allDesktops[i];d.wallpaperPlugin = "org.kde.image";d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");d.writeConfig("Image", "file:///tmp/wall.png")}' 
+  shell: qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript 'var allDesktops = desktops();print (allDesktops);for (i=0;i<allDesktops.length;i++) {d = allDesktops[i];d.wallpaperPlugin = "org.kde.image";d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");d.writeConfig("Image", "file:///tmp/wall.png")}'
 
