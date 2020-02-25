@@ -1,11 +1,9 @@
 ---
-- name: Configure Fedora Workstation and Install Software
+- name: Configuración de Fedora Workstation 
   hosts: all
 
   roles:
-   # - common
-   # - generic_software
-   # - kde_install
-    - wallpaper
-   # - sap_client
-   # - openoffice
+    - check_software
+    - common
+    - alta_idm
+   
