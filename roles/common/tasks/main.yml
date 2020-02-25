@@ -1,9 +1,4 @@
 # This playbook contains common plays that will be run on all nodes.
-- name: Install common dependencies
-  dnf: 
-    name: ['firewalld'] 
-    state: installed
-
 - name: Firewalld service state
   service: 
     name: firewalld 
@@ -15,16 +10,6 @@
     policy: targeted
     state: enforcing
 
-- name: get wallpaper  
-  get_url: 
-    url: http://{{ repo_host }}/files/2.png 
-    dest: /tmp/wall.png
-  register: result
-  until: result is success
-  retries: 5
-  delay: 10
 
-- name: aplicar wallpaper usango gsettings
-  shell: gsettings set org.gnome.desktop.background picture-uri "file:///tmp/wall.png"
 
 
