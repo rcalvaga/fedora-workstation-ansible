@@ -4,6 +4,6 @@
 
   roles:
     - check_software
-    - seguridad
+    - common
     - alta_idm
    
